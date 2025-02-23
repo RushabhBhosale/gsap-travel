@@ -1,9 +1,16 @@
-import Hero from "@/components/hero";
+"use client";
+import { useState } from "react";
+import { Loader } from "@/components/loader";
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(true);
+
   return (
-    <div className="flex justify-center items-center min-h-screen cuso">
-      <Hero />
-    </div>
+    <>
+      {loading && <Loader onComplete={() => setLoading(false)} />}
+      <div className="flex justify-center items-center min-h-screen">
+        <div>div</div>
+      </div>
+    </>
   );
 }
