@@ -21,30 +21,30 @@ export const Loader = ({ onComplete }: { onComplete: () => void }) => {
       tl.fromTo(
         `${cls} .first`,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.15, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 0.05, ease: "power3.out" }
       );
       tl.fromTo(
         `${cls} .last`,
         { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.15, ease: "power3.out" },
+        { y: 0, opacity: 1, duration: 0.05, ease: "power3.out" },
         "<"
       );
       tl.to(
         `${cls} .first`,
-        { y: -50, opacity: 0, duration: 0.15, ease: "power3.in" },
+        { y: -50, opacity: 0, duration: 0.05, ease: "power3.in" },
         "+=0.3"
       );
       tl.to(
         `${cls} .last`,
-        { y: 50, opacity: 0, duration: 0.15, ease: "power3.in" },
+        { y: 50, opacity: 0, duration: 0.05, ease: "power3.in" },
         "<"
       );
     });
 
     tl.to(
       ".loader",
-      { scaleY: 0, duration: 0.3, ease: "power3.inOut" },
-      "+=0.3"
+      { scaleY: 0, duration: 0.15, ease: "power3.inOut" },
+      "+=0.1"
     );
   }, [onComplete]);
 

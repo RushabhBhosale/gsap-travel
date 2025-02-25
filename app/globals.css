@@ -1,6 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.comic-neue-light {
+  font-family: "Comic Neue", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.comic-neue-regular {
+  font-family: "Comic Neue", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-neue-bold {
+  font-family: "Comic Neue", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.comic-neue-light-italic {
+  font-family: "Comic Neue", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.comic-neue-regular-italic {
+  font-family: "Comic Neue", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.comic-neue-bold-italic {
+  font-family: "Comic Neue", serif;
+  font-weight: 700;
+  font-style: italic;
+}
 
 @font-face {
   font-family: "F37";
@@ -44,58 +81,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --background: 180 20% 94%; /* #eef3f3 */
+    --foreground: 121 5% 7%; /* #121315 */
+    --card: 180 20% 94%; /* #eef3f3 */
+    --card-foreground: 121 5% 7%; /* #121315 */
+    --popover: 180 20% 94%; /* #eef3f3 */
+    --popover-foreground: 121 5% 7%; /* #121315 */
+    --primary: 0 100% 46%; /* #eb0000 */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 0 0% 69%; /* #b0b1b4 */
+    --secondary-foreground: 0 0% 0%; /* Black */
+    --muted: 180 20% 90%; /* #e0eeee */
+    --muted-foreground: 121 5% 7%; /* #121315 */
+    --accent: 0 0% 97%; /* #f7fefe */
+    --accent-foreground: 121 5% 7%; /* #121315 */
+    --destructive: 0 100% 46%; /* #eb0000 */
+    --destructive-foreground: 0 0% 100%; /* White */
+    --border: 0 0% 69%; /* #b0b1b4 */
+    --input: 0 0% 69%; /* #b0b1b4 */
+    --ring: 0 100% 46%; /* #eb0000 */
     --radius: 0.3rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 121 5% 7%; /* #121315 */
+    --foreground: 180 20% 94%; /* #eef3f3 */
+    --card: 121 5% 7%; /* #121315 */
+    --card-foreground: 180 20% 94%; /* #eef3f3 */
+    --popover: 121 5% 7%; /* #121315 */
+    --popover-foreground: 180 20% 94%; /* #eef3f3 */
+    --primary: 0 100% 46%; /* #eb0000 */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 0 0% 69%; /* #b0b1b4 */
+    --secondary-foreground: 0 0% 0%; /* Black */
+    --muted: 180 20% 90%; /* #e0eeee */
+    --muted-foreground: 180 20% 94%; /* #eef3f3 */
+    --accent: 0 0% 97%; /* #f7fefe */
+    --accent-foreground: 121 5% 7%; /* #121315 */
+    --destructive: 0 100% 46%; /* #eb0000 */
+    --destructive-foreground: 0 0% 100%; /* White */
+    --border: 0 0% 69%; /* #b0b1b4 */
+    --input: 0 0% 69%; /* #b0b1b4 */
+    --ring: 0 100% 46%; /* #eb0000 */
   }
 }
 
@@ -119,6 +146,27 @@ button,
 .hover-effect {
   cursor: url("https://res.cloudinary.com/df3xsosfu/image/upload/w_32,h_32/v1740242872/ic-cursor-pointer_pawgsq.png"),
     pointer;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .loader {
