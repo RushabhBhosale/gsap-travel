@@ -1,53 +1,126 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import { Button } from "./ui/button";
 import gsap from "gsap";
-import { motion } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
-  const textRef = useRef(null);
-  const descRef = useRef(null);
-  const btnsRef: any = useRef(null);
+  const imageRefs = useRef<HTMLImageElement[]>([]);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const textRef: any = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    if (loaded) {
+      gsap.to(overlayRef.current, {
+        background: "transparent",
+        duration: 1,
+        onComplete: () => {
+          overlayRef.current!.style.display = "none";
+        },
+      });
 
-    tl.from(textRef.current, { y: 50, opacity: 0, duration: 0.8 })
-      .from(descRef.current, { y: 30, opacity: 0, duration: 0.8 }, "-=0.4")
-      .from(
-        btnsRef.current.children,
-        { scale: 0.8, opacity: 0, stagger: 0.2, duration: 0.8 },
-        "-=0.4"
+      gsap.fromTo(
+        textRef.current?.children,
+        { opacity: 0.3 },
+        {
+          opacity: 1,
+          duration: 1,
+          stagger: 0.05,
+          ease: "power3.out",
+        }
       );
-  }, []);
+
+      const positions = [
+        { width: "16.66%", height: "100vh", x: "-327.6%", y: "-29.5%" },
+        { width: "16.66%", height: "100vh", x: "-258.5%", y: "-29.5%" },
+        { width: "16.66%", height: "100vh", x: "-189.5%", y: "-29.5%" },
+        { width: "16.66%", height: "100vh", x: "-121%", y: "-29.5%" },
+        { width: "16.66%", height: "100vh", x: "-52.5%", y: "-29.5%" },
+        { width: "16.66%", height: "100vh", x: "16%", y: "-29.5%" },
+      ];
+
+      imageRefs.current.forEach((img, index) => {
+        if (!img) return;
+
+        gsap.set(img, {
+          width: positions[index].width,
+          height: positions[index].height,
+          translateX: positions[index].x,
+          translateY: positions[index].y,
+          position: "absolute",
+        });
+
+        gsap.to(img, {
+          delay: 1,
+          width: "64px",
+          height: "300px",
+          borderRadius: "90px",
+          translateX: "0",
+          translateY: "0",
+          duration: 1,
+          ease: "power3.inOut",
+        });
+      });
+    }
+  }, [loaded]);
 
   return (
     <div className="h-screen container relative flex justify-center flex-col">
-      <div className="w-full flex justify-center">
-        <div className="md:w-1/2 w-3/4 text-center">
-          <h1 ref={textRef} className="text-5xl font-bold my-7">
-            Miles to go, <span className="text-primary">stories</span> to tell.
-          </h1>
-          <div ref={descRef} className="comic-neue-regular font-medium text-xl">
-            This is my little space on the internet—where I share the things
-            that keep me going. Coding, traveling, and getting lost in great
-            stories.{" "}
-            <span className="hidden md:block">
-              Whether it's building something cool, exploring new places, or
-              binge-watching my favorite shows, it all comes together here. Just
-              me, my work, my adventures
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 z-50 flex justify-center items-center"
+      >
+        <div
+          ref={textRef}
+          className="flex space-x-1 text-[100px] font-bold text-white text-shadow"
+        >
+          {"Rushabh Bhosale".split("").map((char, index) => (
+            <span key={index} style={{ opacity: 0.3 }}>
+              {char}
             </span>
-          </div>
+          ))}
         </div>
       </div>
-      <div className="w-full absolute bottom-20 flex justify-center">
-        <div ref={btnsRef} className="w-[90%] flex justify-between">
-          <Button variant="roundedOutline" size="rounded">
-            Explore Work
-          </Button>
-          <Button variant="roundedOutline" size="rounded">
-            Get in contact
-          </Button>
+      <div className="flex max-w-7xl mx-auto">
+        <div>
+          <div className="w-full flex justify-center">
+            <div>
+              <h1 className="text-[80px] leading-[82px] font-bold my-7">
+                Miles to go, <span className="text-primary">stories</span> to
+                tell.
+              </h1>
+              <div className="comic-neue-regular font-medium text-xl">
+                This is my little space on the internet—where I share the things
+                that keep me going. Coding, traveling, and getting lost in great
+                stories.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex justify-center items-center space-x-4 overflow-hidden">
+          {[
+            "hero-6.avif",
+            "hero-2.avif",
+            "hero-5.avif",
+            "hero-1.avif",
+            "hero-4.avif",
+            "hero-3.avif",
+          ].map((src, i) => (
+            <div
+              key={i}
+              className="w-16 h-[300px] rounded-full overflow-hidden"
+            >
+              <img
+                ref={(el: any) => {
+                  imageRefs.current[i] = el!;
+                  if (i === 5) setLoaded(true);
+                }}
+                className="w-full h-full object-cover"
+                src={`/assets/${src}`}
+                alt={`hero-${i + 1}`}
+                onLoad={() => i === 5 && setLoaded(true)}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
