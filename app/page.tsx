@@ -1,22 +1,18 @@
 "use client";
 import { useState } from "react";
-import { Loader } from "@/components/loader";
 import Hero from "@/components/hero";
+import { HorizontalScrollCarousel } from "@/components/horizontalScroll";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
 
   return (
     <>
-      {/* {loading ? (
-        <Loader onComplete={() => setLoading(false)} />
-      ) : (
-        <div className="flex justify-center min-h-screen">
+      <div>
+        <div className="overflow-hidden">
           <Hero />
         </div>
-      )} */}
-      <div className="flex justify-center min-h-screen">
-        <Hero />
+        <HorizontalScrollCarousel />
       </div>
     </>
   );

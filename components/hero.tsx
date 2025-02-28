@@ -5,37 +5,24 @@ import React, { useEffect, useRef, useState } from "react";
 const Hero = () => {
   const imageRefs = useRef<HTMLImageElement[]>([]);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const textRef: any = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (loaded) {
       gsap.to(overlayRef.current, {
-        background: "transparent",
-        duration: 1,
+        duration: 0.9,
         onComplete: () => {
           overlayRef.current!.style.display = "none";
         },
       });
 
-      gsap.fromTo(
-        textRef.current?.children,
-        { opacity: 0.3 },
-        {
-          opacity: 1,
-          duration: 1,
-          stagger: 0.05,
-          ease: "power3.out",
-        }
-      );
-
       const positions = [
-        { width: "16.66%", height: "100vh", x: "-327.6%", y: "-29.5%" },
-        { width: "16.66%", height: "100vh", x: "-258.5%", y: "-29.5%" },
-        { width: "16.66%", height: "100vh", x: "-189.5%", y: "-29.5%" },
-        { width: "16.66%", height: "100vh", x: "-121%", y: "-29.5%" },
-        { width: "16.66%", height: "100vh", x: "-52.5%", y: "-29.5%" },
-        { width: "16.66%", height: "100vh", x: "16%", y: "-29.5%" },
+        { width: "16.66%", height: "30vh", x: "-293.6%", y: "-59.5%" },
+        { width: "22.66%", height: "45vh", x: "-261.5%", y: "40.5%" },
+        { width: "30.66%", height: "40vh", x: "-125.5%", y: "50.5%" },
+        { width: "16.66%", height: "45vh", x: "-57%", y: "44.5%" },
+        { width: "32.66%", height: "40vh", x: "-145%", y: "-64.5%" },
+        { width: "32.66%", height: "38vh", x: "-51%", y: "-61.5%" },
       ];
 
       imageRefs.current.forEach((img, index) => {
@@ -50,9 +37,8 @@ const Hero = () => {
         });
 
         gsap.to(img, {
-          delay: 1,
+          delay: 0.3,
           width: "64px",
-          height: "300px",
           borderRadius: "90px",
           translateX: "0",
           translateY: "0",
@@ -64,27 +50,16 @@ const Hero = () => {
   }, [loaded]);
 
   return (
-    <div className="h-screen container relative flex justify-center flex-col">
+    <div className="md:h-screen w-screen relative flex justify-center flex-col bg-white">
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-50 flex justify-center items-center"
-      >
-        <div
-          ref={textRef}
-          className="flex space-x-1 text-[100px] font-bold text-white text-shadow"
-        >
-          {"Rushabh Bhosale".split("").map((char, index) => (
-            <span key={index} style={{ opacity: 0.3 }}>
-              {char}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="flex max-w-7xl mx-auto">
+        className="fixed inset-0 flex justify-center items-center bg-white"
+      ></div>
+      <div className="flex px-4 max-w-7xl my-20 mx-auto">
         <div>
           <div className="w-full flex justify-center">
             <div>
-              <h1 className="text-[80px] leading-[82px] font-bold my-7">
+              <h1 className="md:text-[80px] text-6xl md:leading-[82px] font-bold my-7">
                 Miles to go, <span className="text-primary">stories</span> to
                 tell.
               </h1>
@@ -96,27 +71,26 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-center items-center space-x-4 overflow-hidden">
+        <div className="w-full hidden md:flex justify-center space-x-4">
           {[
-            "hero-6.avif",
-            "hero-2.avif",
-            "hero-5.avif",
-            "hero-1.avif",
-            "hero-4.avif",
-            "hero-3.avif",
-          ].map((src, i) => (
+            { src: "hero-6.avif", height: "250px" },
+            { src: "hero-2.avif", height: "400px" },
+            { src: "hero-5.avif", height: "320px" },
+            { src: "hero-1.avif", height: "360px" },
+            { src: "hero-4.avif", height: "200px" },
+            { src: "hero-3.avif", height: "100px" },
+          ].map((img, i) => (
             <div
               key={i}
-              className="w-16 h-[300px] rounded-full overflow-hidden"
+              className={`w-16 h-[${img.height}] rounded-full flex items-center`}
             >
               <img
                 ref={(el: any) => {
                   imageRefs.current[i] = el!;
                   if (i === 5) setLoaded(true);
                 }}
-                className="w-full h-full object-cover"
-                src={`/assets/${src}`}
-                alt={`hero-${i + 1}`}
+                className={`w-full h-full object-cover`}
+                src={`/assets/${img.src}`}
                 onLoad={() => i === 5 && setLoaded(true)}
               />
             </div>
