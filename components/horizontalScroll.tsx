@@ -1,3 +1,4 @@
+"use client";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 
@@ -75,32 +76,32 @@ export default Example;
 
 const cards = [
   {
-    url: "/assets/hero-1.avif",
+    url: "/assets/hero/hero-1.avif",
     title: "Title 1",
     id: 1,
   },
   {
-    url: "/assets/hero-2.avif",
+    url: "/assets/hero/hero-2.avif",
     title: "Title 2",
     id: 2,
   },
   {
-    url: "/assets/hero-3.avif",
+    url: "/assets/hero/hero-3.avif",
     title: "Title 3",
     id: 3,
   },
   {
-    url: "/assets/hero-4.avif",
+    url: "/assets/hero/hero-4.avif",
     title: "Title 4",
     id: 4,
   },
   {
-    url: "/assets/hero-5.avif",
+    url: "/assets/hero/hero-5.avif",
     title: "Title 5",
     id: 5,
   },
   {
-    url: "/assets/hero-6.avif",
+    url: "/assets/hero/hero-6.avif",
     title: "Title 6",
     id: 6,
   },
